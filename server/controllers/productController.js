@@ -11,17 +11,13 @@ const getProducts = async (req, res) => {
 // GET a single product
 const getProduct = async (req, res) => {
   const { id } = req.params;
-
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(404).json({ error: "No such product" });
   }
-
   const product = await Product.findById(id);
-
   if (!product) {
     res.status(404).json({ error: "No such product" });
   }
-
   res.status(200).json(product);
 };
 
@@ -31,7 +27,10 @@ const createProduct = async (req, res) => {
     name,
     photo,
     price,
-    description,
+    gender,
+    category,
+    shortDescription,
+    longDescription,
     quantity,
     // shipping1,
     // shipping2,
@@ -49,8 +48,17 @@ const createProduct = async (req, res) => {
   if (!price) {
     emptyFields.push("price");
   }
-  if (!description) {
-    emptyFields.push("description");
+  if (!gender) {
+    emptyFields.push("gender");
+  }
+  if (!category) {
+    emptyFields.push("category");
+  }
+  if (!shortDescription) {
+    emptyFields.push("shortDescription");
+  }
+  if (!longDescription) {
+    emptyFields.push("longDescription");
   }
   if (!quantity) {
     emptyFields.push("quantity");
@@ -66,7 +74,10 @@ const createProduct = async (req, res) => {
       name,
       photo,
       price,
-      description,
+      gender,
+      category,
+      shortDescription,
+      longDescription,
       quantity,
       // shipping1,
       // shipping2,
