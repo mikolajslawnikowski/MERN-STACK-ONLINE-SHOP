@@ -8,6 +8,7 @@ const opinionSchema = new Schema(
     authorName: { type: String, required: true },
     authorSurname: { type: String, required: true },
     opinionText: { type: String, required: true },
+    ratingValue: { type: Number, required: true },
   },
   { timestamps: true }
 );

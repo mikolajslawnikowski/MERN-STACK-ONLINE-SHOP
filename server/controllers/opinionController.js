@@ -16,7 +16,8 @@ const getOpinionsByProductId = async (req, res) => {
 
 // CREATE new opinion
 const createOpinion = async (req, res) => {
-  const { itemID, authorName, authorSurname, opinionText } = req.body;
+  const { itemID, authorName, authorSurname, opinionText, ratingValue } =
+    req.body;
 
   let emptyFields = [];
 
@@ -35,6 +36,7 @@ const createOpinion = async (req, res) => {
       authorName,
       authorSurname,
       opinionText,
+      ratingValue,
     });
     res.status(200).json(opinion);
   } catch (error) {
