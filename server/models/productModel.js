@@ -12,9 +12,6 @@ const productSchema = new Schema(
     shortDescription: { type: String, required: true },
     longDescription: { type: String, required: true },
     quantity: { type: Number, required: true },
-    // shipping1: { type: Boolean, required: true },
-    // shipping2: { type: Boolean, required: true },
-    // added: { type: Date, required: true },
   },
   { timestamps: true }
 );

@@ -52,9 +52,6 @@ const createProduct = async (req, res) => {
     shortDescription,
     longDescription,
     quantity,
-    // shipping1,
-    // shipping2,
-    // added,
   } = req.body;
 
   let emptyFields = [];
@@ -99,9 +96,6 @@ const createProduct = async (req, res) => {
       shortDescription,
       longDescription,
       quantity,
-      // shipping1,
-      // shipping2,
-      // added
     });
     res.status(200).json(product);
   } catch (error) {
