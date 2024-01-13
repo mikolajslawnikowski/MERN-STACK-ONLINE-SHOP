@@ -1,8 +1,10 @@
 const express = require("express");
 const {
-  createProduct,
   getProducts,
+  getMenProducts,
+  getWomenProducts,
   getProduct,
+  createProduct,
   deleteProduct,
   updateProduct,
 } = require("../controllers/productController");
@@ -15,6 +17,12 @@ const router = express.Router();
 
 // GET all products
 router.get("/", getProducts);
+
+// GET all MEN products
+router.get("/men", getMenProducts);
+
+// GET all WOMEN products
+router.get("/women", getWomenProducts);
 
 // GET single product
 router.get("/:id", getProduct);

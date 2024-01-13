@@ -8,6 +8,26 @@ const getProducts = async (req, res) => {
   res.status(200).json(products);
 };
 
+// GET all MEN products
+const getMenProducts = async (req, res) => {
+  try {
+    const menProducts = await Product.find({ gender: "male" });
+    res.json(menProducts);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+// GET all WOMEN products
+const getWomenProducts = async (req, res) => {
+  try {
+    const womenProducts = await Product.find({ gender: "female" });
+    res.json(womenProducts);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
 // GET a single product
 const getProduct = async (req, res) => {
   const { id } = req.params;
@@ -130,6 +150,8 @@ const updateProduct = async (req, res) => {
 
 module.exports = {
   getProducts,
+  getMenProducts,
+  getWomenProducts,
   getProduct,
   createProduct,
   deleteProduct,
