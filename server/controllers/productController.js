@@ -18,6 +18,36 @@ const getMenProducts = async (req, res) => {
   }
 };
 
+// GET all MEN tshirts
+const getMenTshirts = async (req, res) => {
+  const products = await Product.find({ category: "tshirts", gender: "male" });
+  res.json(products);
+};
+
+// GET all MEN hoodies
+const getMenHoodies = async (req, res) => {
+  const products = await Product.find({ category: "hoodies", gender: "male" });
+  res.json(products);
+};
+
+// GET all MEN jackets
+const getMenJackets = async (req, res) => {
+  const products = await Product.find({ category: "jackets", gender: "male" });
+  res.json(products);
+};
+
+// GET all MEN pants
+const getMenPants = async (req, res) => {
+  const products = await Product.find({ category: "pants", gender: "male" });
+  res.json(products);
+};
+
+// GET all MEN shoes
+const getMenShoes = async (req, res) => {
+  const products = await Product.find({ category: "shoes", gender: "male" });
+  res.json(products);
+};
+
 // GET all WOMEN products
 const getWomenProducts = async (req, res) => {
   try {
@@ -26,6 +56,45 @@ const getWomenProducts = async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
+};
+
+// GET all WOMEN tshirts
+const getWomenTshirts = async (req, res) => {
+  const products = await Product.find({
+    category: "tshirts",
+    gender: "female",
+  });
+  res.json(products);
+};
+
+// GET all WOMEN hoodies
+const getWomenHoodies = async (req, res) => {
+  const products = await Product.find({
+    category: "hoodies",
+    gender: "female",
+  });
+  res.json(products);
+};
+
+// GET all WOMEN jackets
+const getWomenJackets = async (req, res) => {
+  const products = await Product.find({
+    category: "jackets",
+    gender: "female",
+  });
+  res.json(products);
+};
+
+// GET all WOMEN pants
+const getWomenPants = async (req, res) => {
+  const products = await Product.find({ category: "pants", gender: "female" });
+  res.json(products);
+};
+
+// GET all WOMEN shoes
+const getWomenShoes = async (req, res) => {
+  const products = await Product.find({ category: "shoes", gender: "female" });
+  res.json(products);
 };
 
 // GET a single product
@@ -145,7 +214,17 @@ const updateProduct = async (req, res) => {
 module.exports = {
   getProducts,
   getMenProducts,
+  getMenTshirts,
+  getMenHoodies,
+  getMenJackets,
+  getMenPants,
+  getMenShoes,
   getWomenProducts,
+  getWomenTshirts,
+  getWomenHoodies,
+  getWomenJackets,
+  getWomenPants,
+  getWomenShoes,
   getProduct,
   createProduct,
   deleteProduct,
