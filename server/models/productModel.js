@@ -12,6 +12,11 @@ const productSchema = new Schema(
     shortDescription: { type: String, required: true },
     longDescription: { type: String, required: true },
     quantity: { type: Number, required: true },
+    shipping1: { type: Boolean, required: true },
+    shipping2: { type: Boolean, required: true },
+    rating: { type: Number, default: 0 },
+    ratingSum: { type: Number, required: false },
+    ratingCount: { type: Number, required: false },
   },
   { timestamps: true }
 );
