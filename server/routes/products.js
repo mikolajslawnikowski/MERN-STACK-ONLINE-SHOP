@@ -91,19 +91,13 @@ const {
   updateProduct,
   getProductRating,
 } = require("../controllers/productController");
-// const requireAuth = require("../middleware/requireAuth");
 
 const router = express.Router();
 
-// require auth for all product routes
-// router.use(requireAuth);
-
-// GET all products
 router.get("/", getProducts);
 
 router.get("/:id/rating", getProductRating);
 
-// GET all MEN products
 router.get("/men", getMenProducts);
 router.get("/men/date_asc", getMenProductsDateAsc);
 router.get("/men/date_desc", getMenProductsDateDesc);
@@ -112,7 +106,6 @@ router.get("/men/price_desc", getMenProductsPriceDesc);
 router.get("/men/rating_asc", getMenProductsRatingAsc);
 router.get("/men/rating_desc", getMenProductsRatingDesc);
 
-// GET all WOMEN products
 router.get("/women", getWomenProducts);
 router.get("/women/date_asc", getWomenProductsDateAsc);
 router.get("/women/date_desc", getWomenProductsDateDesc);
@@ -121,16 +114,12 @@ router.get("/women/price_desc", getWomenProductsPriceDesc);
 router.get("/women/rating_asc", getWomenProductsRatingAsc);
 router.get("/women/rating_desc", getWomenProductsRatingDesc);
 
-// GET single product
 router.get("/:id", getProduct);
 
-// POST a new product
 router.post("/", createProduct);
 
-// DELETE a product
 router.delete("/:id", deleteProduct);
 
-// UPDATE a product
 router.patch("/:id", updateProduct);
 
 router.get("/men/tshirts", getMenTshirts);

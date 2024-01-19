@@ -5,11 +5,10 @@ const mongoose = require("mongoose");
 const productRoutes = require("./routes/products");
 const userRoutes = require("./routes/user");
 const opinionRoutes = require("./routes/opinions");
+const orderRoutes = require("./routes/orders");
 
-// express app
 const app = express();
 
-// middleware
 app.use(express.json());
 
 app.use((req, res, next) => {
@@ -17,16 +16,14 @@ app.use((req, res, next) => {
   next();
 });
 
-// routes
 app.use("/api/products", productRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/opinions", opinionRoutes);
+app.use("/api/orders", orderRoutes);
 
-// connect to db
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
-    // listen for requests
     app.listen(process.env.PORT, () => {
       console.log(
         "Connected to database & listening on port:",

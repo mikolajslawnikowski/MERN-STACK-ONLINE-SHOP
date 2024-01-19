@@ -6,16 +6,12 @@ const { deleteOpinion } = require("../controllers/opinionController");
 
 const router = express.Router();
 
-// GET all opinions
 router.get("/", getOpinions);
 
-// GET opinions for a single product
 router.get("/:id", getOpinionsByProductId);
 
-// CREATE new opinion
 router.post("/", createOpinion);
 
-// DELETE opinion
 router.delete("/:id", deleteOpinion);
 
 module.exports = router;
