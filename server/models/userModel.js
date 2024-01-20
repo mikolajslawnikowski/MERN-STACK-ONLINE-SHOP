@@ -73,4 +73,47 @@ userSchema.statics.login = async function (email, password) {
   return user;
 };
 
+// userSchema.statics.changeEmail = async function (_id, currentEmail, newEmail) {
+//   const user = await this.findOne({ _id });
+
+//   if (!user) {
+//     throw Error("User not found");
+//   }
+
+//   if (user.email !== currentEmail) {
+//     throw Error("Current email is incorrect");
+//   }
+
+//   user.email = newEmail;
+//   await user.save();
+
+//   return user;
+// };
+
+// userSchema.statics.changePassword = async function (
+//   _id,
+//   currentPassword,
+//   newPassword
+// ) {
+//   const user = await this.findOne({ _id });
+
+//   if (!user) {
+//     throw Error("User not found");
+//   }
+
+//   const match = await bcrypt.compare(currentPassword, user.password);
+
+//   if (!match) {
+//     throw Error("Current password is incorrect");
+//   }
+
+//   const salt = await bcrypt.genSalt(10);
+//   const hash = await bcrypt.hash(newPassword, salt);
+
+//   user.password = hash;
+//   await user.save();
+
+//   return user;
+// };
+
 module.exports = mongoose.model("User", userSchema);

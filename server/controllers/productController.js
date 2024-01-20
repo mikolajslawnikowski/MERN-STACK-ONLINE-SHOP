@@ -796,10 +796,23 @@ const createProduct = async (req, res) => {
   if (!quantity) {
     emptyFields.push("quantity");
   }
+  if (!shipping1) {
+    emptyFields.push("shipping1");
+  }
   if (emptyFields.length > 0) {
     return res
       .status(400)
       .json({ error: `You have to fill in all the fields`, emptyFields });
+  }
+
+  if (typeof price !== "number" || price <= 0) {
+    return res.status(400).json({ error: "Price must be a positive number" });
+  }
+
+  if (typeof quantity !== "number" || quantity <= 0) {
+    return res
+      .status(400)
+      .json({ error: "Quantity must be a positive number" });
   }
 
   try {

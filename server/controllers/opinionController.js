@@ -28,6 +28,10 @@ const createOpinion = async (req, res) => {
       .json({ error: `Opinion cannot be empty`, emptyFields });
   }
 
+  if (typeof ratingValue !== "number" || ratingValue <= 0 || ratingValue > 5) {
+    return res.status(400).json({ error: `Rating value is not valid` });
+  }
+
   try {
     const opinion = await Opinion.create({
       itemID,
@@ -38,6 +42,9 @@ const createOpinion = async (req, res) => {
     });
 
     const product = await Product.findById(itemID);
+    if (!product) {
+      return res.status(404).json({ error: `Product not found` });
+    }
     product.ratingCount = product.ratingCount ? product.ratingCount + 1 : 1;
     product.ratingSum = product.ratingSum
       ? product.ratingSum + ratingValue
