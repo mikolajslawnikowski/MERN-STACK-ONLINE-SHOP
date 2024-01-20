@@ -757,7 +757,7 @@ const getProduct = async (req, res) => {
 };
 
 const createProduct = async (req, res) => {
-  const {
+  let {
     name,
     photo,
     price,
@@ -770,6 +770,9 @@ const createProduct = async (req, res) => {
     shipping2,
   } = req.body;
 
+  price = Number(price);
+  quantity = Number(quantity);
+
   let emptyFields = [];
 
   if (!name) {
@@ -778,7 +781,7 @@ const createProduct = async (req, res) => {
   if (!photo) {
     emptyFields.push("photo");
   }
-  if (!price) {
+  if (!price || typeof price !== "number" || price <= 0) {
     emptyFields.push("price");
   }
   if (!gender) {
@@ -793,26 +796,17 @@ const createProduct = async (req, res) => {
   if (!longDescription) {
     emptyFields.push("longDescription");
   }
-  if (!quantity) {
+  if (!quantity || typeof quantity !== "number" || quantity <= 0) {
     emptyFields.push("quantity");
   }
   if (!shipping1) {
     emptyFields.push("shipping1");
   }
   if (emptyFields.length > 0) {
-    return res
-      .status(400)
-      .json({ error: `You have to fill in all the fields`, emptyFields });
-  }
-
-  if (typeof price !== "number" || price <= 0) {
-    return res.status(400).json({ error: "Price must be a positive number" });
-  }
-
-  if (typeof quantity !== "number" || quantity <= 0) {
-    return res
-      .status(400)
-      .json({ error: "Quantity must be a positive number" });
+    return res.status(400).json({
+      error: `You have to properly fill in all the fields`,
+      emptyFields,
+    });
   }
 
   try {
