@@ -30,6 +30,18 @@ const createOrder = async (req, res) => {
   }
 };
 
+const getOrdersByUserId = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const orders = await Order.find({ userID: id.toString() });
+    res.status(200).json(orders);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 module.exports = {
   createOrder,
+  getOrdersByUserId,
 };
