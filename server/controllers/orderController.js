@@ -1,5 +1,6 @@
 const Order = require("../models/orderModel");
 const Product = require("../models/productModel");
+const validator = require("validator");
 
 const createOrder = async (req, res) => {
   const {
@@ -21,10 +22,10 @@ const createOrder = async (req, res) => {
   if (!Address) {
     emptyFields.push("Address");
   }
-  if (!Email) {
+  if (!Email || !validator.isEmail(Email)) {
     emptyFields.push("Email");
   }
-  if (!PhoneNumber) {
+  if (!PhoneNumber || !validator.isMobilePhone(PhoneNumber)) {
     emptyFields.push("PhoneNumber");
   }
   if (!DeliveryMethod) {
@@ -40,7 +41,10 @@ const createOrder = async (req, res) => {
   if (emptyFields.length > 0) {
     return res
       .status(400)
-      .json({ error: `You have to fill in all the fields`, emptyFields });
+      .json({
+        error: `You have to properly fill in all the fields`,
+        emptyFields,
+      });
   }
 
   try {
